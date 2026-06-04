@@ -2,9 +2,20 @@
 
 ## Planning Meeting 1
 
-**Date:** [Add date]  
+**Date:** 06/01/2026 
 **Meeting Type:** Group planning meeting  
-**Members Present:** [Add names]
+**Members Present:** 
+Ali Khairreddin
+Muhammad Wasay Munawar
+Arshia Gole Sorkhi
+Christian Elyasi
+Jagshan Sangha
+Hartaj Sangha
+Ashrey Mathews
+Alexander Ristic
+Jazib Zaidi
+Aryan Tyagi
+
 
 ### Main Discussion
 The team discussed the Personal Expense Tracker project idea for CP476B. We agreed that the application will focus on helping students and young adults track expenses, organize spending categories, set budgets, and view simple spending summaries.

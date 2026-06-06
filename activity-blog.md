@@ -41,3 +41,42 @@ The team discussed the Personal Expense Tracker project idea for CP476B. We agre
 - Add GitHub links to links.txt.
 - Export the report as PDF.
 - Package the final submission ZIP.
+
+### Planning Meeting 2
+**Date:** 06/05/2026 
+**Meeting Type:** Group review meeting  
+**Members Present:** 
+Ali Khairreddin,
+Muhammad Wasay Munawar,
+Arshia Gole Sorkhi,
+Christian Elyasi,
+Jagshan Sangha,
+Hartaj Sangha,
+Ashrey Mathews,
+Alexander Ristic,
+Jazib Zaidi,
+Aryan Tyagi,
+
+### Main Discussion
+The group reviewed the progress of Project Milestone 1 and confirmed all major parts of the report had been completed. Our group members shared their work to review and edit including the project proposal, requirements, user stories, wireframes, data planning team plan and github setup. Our group members discussed parts where changes needed to be made
+
+###Decisions Made
+- The shared expense feature now will remain a "Should have" feature for Milestone 2 development
+- Customer user created categories will be supported through the categories table
+- The dashboard will show total income, total expenses and the overall budget now
+- Every section will be reviewed by a group member
+
+###Task Assignments
+- Wasay and Jagshan: Project Proposal
+- Arshia and Ashrey: Requirements User Stories
+- Christian and Aryan: Wireframes
+- Hartaj and Ali: Data planning
+- Ali: Team plan and Github
+- Hartaj and Jazib: Activity Blog
+
+###Next Steps
+- Comp[ete final proofreading
+- Verify github is based on instructions
+- Export the file as pdf
+- Start working on Milestone 2
+

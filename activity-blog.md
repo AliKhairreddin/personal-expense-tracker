@@ -26,7 +26,7 @@ The team discussed the Personal Expense Tracker project idea for CP476B. We agre
 - Christian and Aryan: Wireframes
 - Hartaj and Ali: Data planning
 - Ali: Team plan
-- Ali: GitHub setup
+- Ali and Alexander: GitHub setup
 - Hartaj and Jazib: Activity blog/wiki
 
 ### Decisions Made

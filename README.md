@@ -13,6 +13,7 @@ Personal Expense Tracker is a full-stack web application that helps students and
 - Aryan
 - Hartaj
 - Jazib
+- Alexander
 
 ## Main Features
 - User accounts
@@ -37,5 +38,5 @@ Project folders and files will be added as development begins.
 - Milestone 3: Full-stack integration, testing, and final demo
 
 ## Links
-- GitHub Project Board:
-- Activity Blog / Wiki:
+- GitHub Project Board: https://github.com/users/AliKhairreddin/projects/2
+- GitHub Activity Blog MD Link: https://github.com/AliKhairreddin/personal-expense-tracker/blob/main/activity-blog.md

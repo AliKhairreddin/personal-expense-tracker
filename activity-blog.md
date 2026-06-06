@@ -60,13 +60,13 @@ Aryan Tyagi,
 ### Main Discussion
 The group reviewed the progress of Project Milestone 1 and confirmed all major parts of the report had been completed. Our group members shared their work to review and edit including the project proposal, requirements, user stories, wireframes, data planning team plan and github setup. Our group members discussed parts where changes needed to be made
 
-###Decisions Made
+### Decisions Made
 - The shared expense feature now will remain a "Should have" feature for Milestone 2 development
 - Customer user created categories will be supported through the categories table
 - The dashboard will show total income, total expenses and the overall budget now
 - Every section will be reviewed by a group member
 
-###Task Assignments
+### Task Assignments
 - Wasay and Jagshan: Project Proposal
 - Arshia and Ashrey: Requirements User Stories
 - Christian and Aryan: Wireframes
@@ -74,8 +74,8 @@ The group reviewed the progress of Project Milestone 1 and confirmed all major p
 - Ali: Team plan and Github
 - Hartaj and Jazib: Activity Blog
 
-###Next Steps
-- Comp[ete final proofreading
+### Next Steps
+- Complete final proofreading
 - Verify github is based on instructions
 - Export the file as pdf
 - Start working on Milestone 2

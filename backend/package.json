@@ -1,0 +1,10 @@
+{
+  "name": "personal-expense-tracker-backend",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Milestone 2 Node.js back-end skeleton for the Personal Expense Tracker project.",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js"
+  }
+}

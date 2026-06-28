@@ -112,4 +112,11 @@ The team met to begin work on Milestone 2 and reviewed the project requirements.
 - Update the GitHub Project board and activity blog with development progress.
 - Prepare all Milestone 2 deliverables for submission.
 
+### Challenges / Blockers
 
+- Minor inconsistencies between the original wireframes and the implemented layouts were identified.
+- Some database relationships required adjustments to reduce redundant data.
+
+### Resolution
+
+- The wireframes were updated to reflect the final layout, and the database schema was revised by adding appropriate foreign keys and constraints.

@@ -80,3 +80,36 @@ The group reviewed the progress of Project Milestone 1 and confirmed all major p
 - Export the file as pdf
 - Start working on Milestone 2
 
+### Planning Meeting 3
+**Date:** 06/24/2026 **Meeting Type:** Group planning meeting
+
+**Members Present:** Ali Khairreddin, Muhammad Wasay Munawar, Arshia Gole Sorkhi, Christian Elyasi, Jagshan Sangha, Hartaj Sangha, Ashrey Mathews, Alexander Ristic, Jazib Zaidi, Aryan Tyagi
+
+### Main Discussion
+
+The team met to begin work on Milestone 2 and reviewed the project requirements. We discussed the implementation of the front-end, database design, backend setup, GitHub project progress, and documentation. Each group member confirmed their assigned responsibilities and discussed the expected timeline for completing Milestone 2.
+
+### Decisions Made
+
+- The application implementation will continue following the wireframes and user stories from Milestone 1.
+- The database schema will include all required relationships and constraints before backend integration begins.
+- The backend project structure will be completed before connecting the front-end to the database.
+- The GitHub Project board will continue to be updated regularly to accurately reflect project progress.
+
+### Task Assignments
+
+- Hartaj and Aryan: Working Front-End
+- Wasay and Jagshan: Database Design Package
+- Ali: Back-End Setup (Node.js/PHP) & README Updated
+- Jazib and Ashrey: Update GitHub Projects Kanban
+- Christian, Arshia, and Alexander: Update Activity Blog/Wiki
+
+### Next Steps
+
+- Complete the front-end implementation.
+- Finalize the database design and SQL CREATE TABLE statements.
+- Continue backend development and project structure.
+- Update the GitHub Project board and activity blog with development progress.
+- Prepare all Milestone 2 deliverables for submission.
+
+

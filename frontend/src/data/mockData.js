@@ -1,8 +1,3 @@
-// ─── Mock Data ───────────────────────────────────────────────────────────────
-// This file provides realistic seed data for all features while the backend
-// database is not yet connected. Replace these arrays with real API calls
-// in Milestone 3.
-
 export const MOCK_USER = {
   id: 1,
   name: "Alex Johnson",

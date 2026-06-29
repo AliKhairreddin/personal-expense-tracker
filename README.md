@@ -153,6 +153,9 @@ The health-check and API overview endpoints are functional. Database-dependent o
 - **Muhammad Wasay Munawar and Jagshan Sangha:** Database design package, including the ER diagram and SQL `CREATE TABLE` statements
 - **Ali Khairreddin:** Node.js back-end project skeleton, runnable server entry point, health-check endpoint, and initial routes/controllers
 - **Remaining front-end and Milestone 2 contributions:** To be added after the group finalizes assignments and merges completed work
+- **Hartaj Sangha and Aryan Tyagi:** Working front-end implementation, including the core application screens, navigation between pages, and the primary user workflow using mock data.
+- **Jazib Zaidi and Ashrey Mathews:** Updated GitHub Projects Kanban board by creating, assigning, organizing, and moving tasks through the required workflow columns (Backlog, Ready, In Progress, In Review, and Done).
+- **Christian Elyasi, Arshia Gole Sorkhi, and Alexander Ristic:** Updated the Activity Blog/Wiki with Milestone 2 progress, meeting minutes, task assignments, project decisions, and development updates.
 
 ## Links
 

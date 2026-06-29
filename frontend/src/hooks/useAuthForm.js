@@ -1,13 +1,6 @@
 import { useState } from "react";
 import { useAuth } from "../context/AuthContext";
-
-// ─── useAuthForm ──────────────────────────────────────────────────────────────
-// Drives both the Login and Register forms.
-// Pass mode="login" or mode="register".
-//
-// Usage:
-//   const { fields, errors, handleChange, handleSubmit } = useAuthForm("login");
-
+//logic and register
 const FORMS = {
   login:    { email: "", password: "" },
   register: { name: "", email: "", password: "", confirmPassword: "" },

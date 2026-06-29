@@ -61,8 +61,6 @@ export function useAuth() {
   if (!ctx) throw new Error("useAuth must be used inside <AuthProvider>");
   return ctx;
 }
-
-// Helper so mock delays look like real network calls.
 function delay(ms) {
   return new Promise((res) => setTimeout(res, ms));
 }

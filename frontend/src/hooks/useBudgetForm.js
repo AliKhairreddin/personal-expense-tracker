@@ -1,12 +1,6 @@
 import { useState } from "react";
 import { useBudgets } from "../context/BudgetContext";
-
-// ─── useBudgetForm ────────────────────────────────────────────────────────────
-// Manages form state and validation for the Add/Edit Budget form.
-//
-// Usage:
-//   const { fields, errors, handleChange, handleSubmit } = useBudgetForm();
-
+//empty form
 const EMPTY_FORM = {
   categoryId: "",
   limit: "",

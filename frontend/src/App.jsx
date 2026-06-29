@@ -5,19 +5,6 @@ import { TransactionProvider }                       from "./context/Transaction
 import { BudgetProvider }                            from "./context/BudgetContext";
 import { SharedExpenseProvider }                     from "./context/SharedExpenseContext";
 
-// ─── Placeholder screen imports ───────────────────────────────────────────────
-// Your groupmate will create these files. Import them here once they exist.
-// Each screen receives the hooks/context it needs; no prop-drilling required.
-//
-// import LoginScreen       from "./components/auth/LoginScreen";
-// import RegisterScreen    from "./components/auth/RegisterScreen";
-// import DashboardScreen   from "./components/dashboard/DashboardScreen";
-// import TransactionsScreen from "./components/transactions/TransactionsScreen";
-// import BudgetsScreen     from "./components/budgets/BudgetsScreen";
-// import CategoriesScreen  from "./components/categories/CategoriesScreen";
-// import SharedScreen      from "./components/shared/SharedScreen";
-
-// ─── Temporary stub screens (remove once your groupmate's are ready) ──────────
 function StubScreen({ name }) {
   return (
     <div style={{ padding: 40, textAlign: "center" }}>
@@ -30,7 +17,7 @@ function StubScreen({ name }) {
   );
 }
 
-// ─── Navigation tabs ──────────────────────────────────────────────────────────
+//Nav tabs
 const NAV_ITEMS = [
   { key: "dashboard",    label: "Dashboard" },
   { key: "transactions", label: "Transactions" },
@@ -39,14 +26,14 @@ const NAV_ITEMS = [
   { key: "shared",       label: "Shared Expenses" },
 ];
 
-// ─── Inner app (rendered only when logged in) ─────────────────────────────────
+//inner app 
 function AppShell() {
   const { user, logout } = useAuth();
   const [activePage, setActivePage] = useState("dashboard");
 
   return (
     <div style={{ fontFamily: "sans-serif", minHeight: "100vh" }}>
-      {/* Nav bar */}
+      {}
       <nav style={{ background: "#1e293b", padding: "12px 24px", display: "flex", alignItems: "center", gap: 16 }}>
         <span style={{ color: "#fff", fontWeight: 700, marginRight: "auto" }}>💸 ExpenseTracker</span>
         {NAV_ITEMS.map((item) => (
@@ -71,7 +58,7 @@ function AppShell() {
         </button>
       </nav>
 
-      {/* Screen outlet — swap StubScreen for real screens as they're built */}
+      {}
       <main style={{ padding: 24 }}>
         {activePage === "dashboard"    && <StubScreen name="Dashboard" />}
         {activePage === "transactions" && <StubScreen name="Transactions" />}
@@ -83,14 +70,12 @@ function AppShell() {
   );
 }
 
-// ─── Login gate (shown when not authenticated) ────────────────────────────────
 function AuthGate() {
   const { user } = useAuth();
-  const [mode, setMode] = useState("login"); // "login" | "register"
+  const [mode, setMode] = useState("login"); 
 
   if (user) return <AppShell />;
 
-  // Placeholder until groupmate's auth screens are ready.
   return (
     <div style={{ display: "flex", flexDirection: "column", alignItems: "center", paddingTop: 80, fontFamily: "sans-serif" }}>
       <h1>💸 ExpenseTracker</h1>
@@ -107,9 +92,6 @@ function AuthGate() {
   );
 }
 
-// ─── Root: providers wrap everything ─────────────────────────────────────────
-// Provider order matters: TransactionProvider must wrap BudgetProvider because
-// BudgetContext reads from TransactionContext to compute spending.
 export default function App() {
   return (
     <AuthProvider>

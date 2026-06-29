@@ -81,7 +81,7 @@ The group reviewed the progress of Project Milestone 1 and confirmed all major p
 - Start working on Milestone 2
 
 ### Planning Meeting 3
-**Date:** 06/24/2026 **Meeting Type:** Group planning meeting
+**Date:** 06/24/2026 **Meeting Type:** Milestone 2 Group planning meeting
 
 **Members Present:** Ali Khairreddin, Muhammad Wasay Munawar, Arshia Gole Sorkhi, Christian Elyasi, Jagshan Sangha, Hartaj Sangha, Ashrey Mathews, Alexander Ristic, Jazib Zaidi, Aryan Tyagi
 
@@ -120,3 +120,45 @@ The team met to begin work on Milestone 2 and reviewed the project requirements.
 ### Resolution
 
 - The wireframes were updated to reflect the final layout, and the database schema was revised by adding appropriate foreign keys and constraints.
+
+### Planning Meeting 4
+
+**Date:** 06/28/2026
+**Meeting Type:** Milestone 2 Group Review Meeting
+
+**Members Present:**
+Ali Khairreddin, Muhammad Wasay Munawar, Arshia Gole Sorkhi, Christian Elyasi, Jagshan Sangha, Hartaj Sangha, Ashrey Mathews, Alexander Ristic, Jazib Zaidi, Aryan Tyagi
+
+### Main Discussion
+
+The team reviewed the completion status of Milestone 2 deliverables. The front-end workflow is operational using mock data, the database schema has been finalized, and the backend project structure has been created. The GitHub Project board was reviewed to ensure tasks accurately reflected project progress.
+
+### Work Completed
+
+- Front-end workflow completed for the primary user actions.
+- Database ER diagram finalized.
+- SQL CREATE TABLE statements fully created with data validation and constraints.
+- Backend project skeleton created with initial routes and controller structure.
+- README updated with instructions for running the application locally.
+- GitHub Kanban updated with completed and in-progress tasks.
+
+### Decisions Made
+
+- Authentication functionality will be completed during Milestone 3.
+- Additional expense analytics will be considered as optional enhancements if time permits.
+- All future development will follow the finalized database schema.
+
+### Task Assignments
+
+- Hartaj and Aryan: Working Front-End
+- Wasay and Jagshan: Database Design Package
+- Ali: Back-End Setup (Node.js/PHP) & README Updated
+- Jazib and Ashrey: Update GitHub Projects Kanban
+- Christian, Arshia, and Alexander: Update Activity Blog/Wiki
+
+### Next Steps
+
+- Begin full-stack integration.
+- Connect the front-end to the back-end and database.
+- Start implementing CRUD functionality for users, transactions, budgets, categories, and shared expenses.
+- Prepare for Milestone 3 development.

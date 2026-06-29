@@ -1,28 +1,13 @@
 import { createContext, useContext, useState } from "react";
 import { MOCK_SHARED_EXPENSES } from "../data/mockData";
 
-// ─── SharedExpenseContext ─────────────────────────────────────────────────────
-// Manages shared expenses and their member lists.
-// Members can be added, updated (mark paid), and removed per expense.
-//
-// Milestone 3: replace mock ops with:
-//   listSharedExpenses  → GET    /api/shared-expenses
-//   createSharedExpense → POST   /api/shared-expenses
-//   updateSharedExpense → PUT    /api/shared-expenses/:id
-//   deleteSharedExpense → DELETE /api/shared-expenses/:id
-//   listMembers         → GET    /api/shared-expenses/:id/members
-//   addMember           → POST   /api/shared-expenses/:id/members
-//   updateMember        → PUT    /api/shared-expenses/:id/members/:memberId
-//   deleteMember        → DELETE /api/shared-expenses/:id/members/:memberId
-
 const SharedExpenseContext = createContext(null);
 
 export function SharedExpenseProvider({ children }) {
   const [sharedExpenses, setSharedExpenses] = useState(MOCK_SHARED_EXPENSES);
   const [loading, setLoading] = useState(false);
   const [error, setError]     = useState(null);
-
-  // ── Shared expense CRUD ───────────────────────────────────────────────────
+  
   async function addSharedExpense(formData) {
     setLoading(true);
     setError(null);
@@ -65,8 +50,7 @@ export function SharedExpenseProvider({ children }) {
       setLoading(false);
     }
   }
-
-  // ── Member CRUD ───────────────────────────────────────────────────────────
+  
   async function addMember(expenseId, memberData) {
     setLoading(true);
     setError(null);

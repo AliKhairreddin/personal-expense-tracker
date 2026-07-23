@@ -1,20 +1,11 @@
-import { useMemo } from "react";
 import { useAuth } from "../context/AuthContext";
-import { useBudgets } from "../context/BudgetContext";
-import { useCategories } from "../context/CategoryContext";
-import { useTransactions } from "../context/TransactionContext";
-import { buildDashboardSummary, formatCurrency } from "../utils/dashboard";
+import { useDashboardSummary } from "../hooks/useDashboardSummary";
+import { formatCurrency } from "../utils/dashboard";
 
 export default function Dashboard({ onNavigate }) {
   const { user } = useAuth();
-  const { transactions } = useTransactions();
-  const { budgets } = useBudgets();
-  const { getCategoryById } = useCategories();
-
-  const summary = useMemo(
-    () => buildDashboardSummary(transactions, budgets, getCategoryById),
-    [transactions, budgets, getCategoryById],
-  );
+  const { summary, loading, error, reload } = useDashboardSummary(user.id);
+  const { budgets, transactionCounts } = summary;
 
   const firstName = user.name.split(" ")[0];
 
@@ -31,6 +22,19 @@ export default function Dashboard({ onNavigate }) {
         </button>
       </header>
 
+      {loading && (
+        <div className="dashboard-notice" role="status">
+          Loading your latest financial summary…
+        </div>
+      )}
+
+      {error && (
+        <div className="dashboard-notice dashboard-notice--error" role="alert">
+          <span>Dashboard data could not be loaded: {error}</span>
+          <button type="button" onClick={reload}>Try again</button>
+        </div>
+      )}
+
       <section className="summary-grid" aria-label="Account summary">
         <SummaryCard
           label="Available balance"
@@ -43,14 +47,14 @@ export default function Dashboard({ onNavigate }) {
         <SummaryCard
           label="Total income"
           value={formatCurrency(summary.totalIncome)}
-          note={`${transactions.filter((transaction) => transaction.type === "income").length} recorded deposits`}
+          note={`${transactionCounts.income} recorded deposits`}
           tone="mint"
           icon="income"
         />
         <SummaryCard
           label="Total spent"
           value={formatCurrency(summary.totalExpense)}
-          note={`${transactions.filter((transaction) => transaction.type === "expense").length} recorded expenses`}
+          note={`${transactionCounts.expense} recorded expenses`}
           tone="peach"
           icon="expense"
         />
@@ -106,7 +110,7 @@ export default function Dashboard({ onNavigate }) {
           {budgets.length ? (
             <div className="budget-list">
               {budgets.slice(0, 4).map((budget) => {
-                const category = getCategoryById(budget.categoryId);
+                const category = budget.category;
                 const isOver = budget.remaining < 0;
                 return (
                   <div className="budget-item" key={budget.id}>
@@ -133,7 +137,7 @@ export default function Dashboard({ onNavigate }) {
           {summary.recentTransactions.length ? (
             <div className="transaction-list">
               {summary.recentTransactions.map((transaction) => {
-                const category = getCategoryById(transaction.categoryId);
+                const category = transaction.category;
                 const isIncome = transaction.type === "income";
                 return (
                   <div className="transaction-row" key={transaction.id}>

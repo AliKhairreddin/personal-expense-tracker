@@ -4,7 +4,11 @@ import {
   useEffect,
   useState,
 } from "react";
+import { apiRequest } from "../utils/api";
+import { withCategoryPresentation } from "../utils/categoryPresentation";
+
 const CategoryContext = createContext(null);
+
 export function CategoryProvider({ children }) {
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -17,16 +21,10 @@ export function CategoryProvider({ children }) {
     setLoading(true);
     setError(null);
     try {
-      const response = await fetch(
-        "http://localhost:3000/api/categories"
+      const result = await apiRequest("/api/categories");
+      setCategories(
+        (result.data || []).map(withCategoryPresentation)
       );
-      const result = await response.json();
-      if (!response.ok) {
-        throw new Error(
-          result.message || "Failed to load categories."
-        );
-      }
-      setCategories(result.data || []);
     } catch (err) {
       setError(err.message);
     } finally {
@@ -50,27 +48,19 @@ export function CategoryProvider({ children }) {
     setLoading(true);
     setError(null);
     try {
-      const response = await fetch(
-        "http://localhost:3000/api/categories",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formData),
-        }
-      );
-      const result = await response.json();
-      if (!response.ok) {
-        throw new Error(
-          result.message || "Failed to create category."
-        );
-      }
+      const result = await apiRequest("/api/categories", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+      const createdCategory = withCategoryPresentation(result.data);
       setCategories((previousCategories) => [
         ...previousCategories,
-        result.data,
+        createdCategory,
       ]);
-      return result.data;
+      return createdCategory;
     } catch (err) {
       setError(err.message);
       return null;
@@ -83,30 +73,22 @@ export function CategoryProvider({ children }) {
     setLoading(true);
     setError(null);
     try {
-      const response = await fetch(
-        `http://localhost:3000/api/categories/${id}`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(updatedData),
-        }
-      );
-      const result = await response.json();
-      if (!response.ok) {
-        throw new Error(
-          result.message || "Failed to update category."
-        );
-      }
+      const result = await apiRequest(`/api/categories/${id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(updatedData),
+      });
+      const updatedCategory = withCategoryPresentation(result.data);
       setCategories((previousCategories) =>
         previousCategories.map((category) =>
           category.id === Number(id)
-            ? result.data
+            ? updatedCategory
             : category
         )
       );
-      return result.data;
+      return updatedCategory;
     } catch (err) {
       setError(err.message);
       return null;
@@ -119,18 +101,9 @@ export function CategoryProvider({ children }) {
     setLoading(true);
     setError(null);
     try {
-      const response = await fetch(
-        `http://localhost:3000/api/categories/${id}`,
-        {
-          method: "DELETE",
-        }
-      );
-      const result = await response.json();
-      if (!response.ok) {
-        throw new Error(
-          result.message || "Failed to delete category."
-        );
-      }
+      await apiRequest(`/api/categories/${id}`, {
+        method: "DELETE",
+      });
       setCategories((previousCategories) =>
         previousCategories.filter(
           (category) => category.id !== Number(id)

@@ -5,6 +5,11 @@
   "description": "Milestone 2 Node.js back-end skeleton for the Personal Expense Tracker project.",
   "main": "src/server.js",
   "scripts": {
-    "start": "node src/server.js"
+    "start": "node src/server.js",
+    "test": "node --test src/**/*.test.js"
+  },
+  "dependencies": {
+    "dotenv": "^17.4.2",
+    "mysql2": "^3.23.1"
   }
 }

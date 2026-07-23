@@ -33,14 +33,11 @@ The application is being developed for **CP476B – Internet Computing** and wil
 
 ### Current
 
-- **Back end:** Node.js using built-in Node.js modules
+- **Back end:** Node.js with the `mysql2` database driver
 - **API format:** JSON over HTTP
-- **Database:** Relational SQL database; schema and SQL statements are being completed for Milestone 2
+- **Database:** MySQL
+- **Front end:** React and Vite
 - **Version control and project management:** GitHub and GitHub Projects
-
-### Front End
-
-The exact front-end technologies and run command will be added when the front-end implementation is merged into the main repository. Only course-approved technologies will be used.
 
 ## Project Structure
 
@@ -68,14 +65,31 @@ Additional front-end and database files will be added as the Milestone 2 work is
 ### Prerequisites
 
 - Node.js and npm installed
+- MySQL installed and running
 - A local copy of this GitHub repository
 
 ### Back End
 
-From the repository root, run:
+Create the database and seed the demo user and categories:
 
 ```bash
 cd backend
+mysql -u root -p < src/data/schema.sql
+```
+
+This schema command recreates `expense_tracker`, so do not run it against a
+database containing data you need to keep.
+
+Create a local environment file and update it for your MySQL account:
+
+```bash
+cp .env.example .env
+```
+
+Install dependencies and start the API:
+
+```bash
+npm install
 npm start
 ```
 
@@ -105,17 +119,24 @@ Open the following endpoint to view the initialized API route groups:
 http://localhost:3000/api
 ```
 
-To run the server on another port:
+To run the server on another port, update `PORT` in `backend/.env`.
 
-```bash
-PORT=4000 npm start
-```
-
-The current back-end setup uses only built-in Node.js modules, so no third-party package installation is required.
+The seeded demo account has user ID `1`. API routes use this account until the
+authentication work is merged.
 
 ### Front End
 
-The front end is currently being implemented by the team. Its exact folder name and start command must be added here after the front-end code is merged into the main branch and verified on a clean machine.
+In another terminal, run:
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+Open `http://localhost:5173`. The frontend uses `http://localhost:3000` for the
+API by default. To use another API URL, define `VITE_API_URL` in
+`frontend/.env.local`.
 
 ## Back-End API Structure
 
@@ -129,7 +150,9 @@ The Node.js back-end skeleton currently includes route and controller files for:
 - Shared expenses
 - Shared-expense members
 
-The health-check and API overview endpoints are functional. Database-dependent operations are currently represented by explicit controller stubs and will be connected to the relational database after the schema is finalized.
+The health-check, API overview, categories CRUD, and dashboard summary endpoints
+are functional. Transaction, budget, authentication, and shared-expense
+controllers are still being completed by their assigned team members.
 
 ## Milestone Progress
 

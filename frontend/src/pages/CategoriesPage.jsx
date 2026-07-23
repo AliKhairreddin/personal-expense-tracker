@@ -107,7 +107,8 @@ function CategoriesPage() {
 
   return (
     <section className="categories-page">
-      <h2>Categories</h2>
+      <p className="eyebrow">Organization</p>
+      <h1>Categories</h1>
 
       <p>
         Create categories to organize your income and expenses.
@@ -155,23 +156,25 @@ function CategoriesPage() {
         </button>
       </form>
       {formError && (
-        <p className="error-message">
+        <p className="error-message" role="alert">
           {formError}
         </p>
       )}
       {error && (
-        <p className="error-message">
+        <p className="error-message" role="alert">
           {error}
         </p>
       )}
       {successMessage && (
-        <p className="success-message">
+        <p className="success-message" role="status">
           {successMessage}
         </p>
       )}
       <div className="category-list">
         <h3>Your Categories</h3>
-        {categories.length === 0 ? (
+        {loading && categories.length === 0 ? (
+          <p>Loading categories…</p>
+        ) : categories.length === 0 ? (
           <p>
             No categories have been created yet.
           </p>

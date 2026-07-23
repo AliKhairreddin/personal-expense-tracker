@@ -5,6 +5,7 @@ import { CategoryProvider } from "./context/CategoryContext";
 import { SharedExpenseProvider } from "./context/SharedExpenseContext";
 import { TransactionProvider } from "./context/TransactionContext";
 import { useAuthForm } from "./hooks/useAuthForm";
+import CategoriesPage from "./pages/CategoriesPage";
 import Dashboard from "./pages/Dashboard";
 
 const NAV_ITEMS = [
@@ -97,6 +98,8 @@ function AppShell() {
         <main id="main-content" className="page-container">
           {activePage === "dashboard" ? (
             <Dashboard onNavigate={navigate} />
+          ) : activePage === "categories" ? (
+            <CategoriesPage />
           ) : (
             <IntegrationPlaceholder
               page={NAV_ITEMS.find((item) => item.key === activePage)}

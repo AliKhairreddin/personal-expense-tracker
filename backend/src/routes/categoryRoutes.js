@@ -1,5 +1,4 @@
 const categoryController = require("../controllers/categoryController");
-
 module.exports = [
   { method: "GET", path: "/api/categories", handler: categoryController.listCategories },
   { method: "POST", path: "/api/categories", handler: categoryController.createCategory },

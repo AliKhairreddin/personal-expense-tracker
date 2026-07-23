@@ -1,24 +1,32 @@
-import { createContext, useContext, useState } from "react";
-import { DEFAULT_CATEGORIES } from "../data/mockData";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 const CategoryContext = createContext(null);
-
 export function CategoryProvider({ children }) {
-  const [categories, setCategories] = useState(DEFAULT_CATEGORIES);
-  const [loading, setLoading]       = useState(false);
-  const [error, setError]           = useState(null);
-  
-  function getCategoryById(id) {
-    return categories.find((c) => c.id === Number(id)) ?? { name: "Uncategorized", icon: "❓", color: "#9ca3af" };
-  }
+  const [categories, setCategories] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  useEffect(() => {
+    fetchCategories();
+  }, []);
 
-  async function addCategory(formData) {
+  async function fetchCategories() {
     setLoading(true);
     setError(null);
     try {
-      await delay(300);
-      const newCat = { ...formData, id: Date.now(), isCustom: true };
-      setCategories((prev) => [...prev, newCat]);
-      return newCat;
+      const response = await fetch(
+        "http://localhost:3000/api/categories"
+      );
+      const result = await response.json();
+      if (!response.ok) {
+        throw new Error(
+          result.message || "Failed to load categories."
+        );
+      }
+      setCategories(result.data || []);
     } catch (err) {
       setError(err.message);
     } finally {
@@ -26,16 +34,82 @@ export function CategoryProvider({ children }) {
     }
   }
 
-  async function editCategory(id, formData) {
+  function getCategoryById(id) {
+    return (
+      categories.find(
+        (category) => category.id === Number(id)
+      ) ?? {
+        name: "Uncategorized",
+        icon: "❓",
+        color: "#9ca3af",
+      }
+    );
+  }
+
+  async function addCategory(formData) {
     setLoading(true);
     setError(null);
     try {
-      await delay(300);
-      setCategories((prev) =>
-        prev.map((c) => (c.id === id ? { ...c, ...formData } : c))
+      const response = await fetch(
+        "http://localhost:3000/api/categories",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
       );
+      const result = await response.json();
+      if (!response.ok) {
+        throw new Error(
+          result.message || "Failed to create category."
+        );
+      }
+      setCategories((previousCategories) => [
+        ...previousCategories,
+        result.data,
+      ]);
+      return result.data;
     } catch (err) {
       setError(err.message);
+      return null;
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  async function editCategory(id, updatedData) {
+    setLoading(true);
+    setError(null);
+    try {
+      const response = await fetch(
+        `http://localhost:3000/api/categories/${id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(updatedData),
+        }
+      );
+      const result = await response.json();
+      if (!response.ok) {
+        throw new Error(
+          result.message || "Failed to update category."
+        );
+      }
+      setCategories((previousCategories) =>
+        previousCategories.map((category) =>
+          category.id === Number(id)
+            ? result.data
+            : category
+        )
+      );
+      return result.data;
+    } catch (err) {
+      setError(err.message);
+      return null;
     } finally {
       setLoading(false);
     }
@@ -45,18 +119,43 @@ export function CategoryProvider({ children }) {
     setLoading(true);
     setError(null);
     try {
-      await delay(300);
-      setCategories((prev) => prev.filter((c) => c.id !== id || !c.isCustom));
+      const response = await fetch(
+        `http://localhost:3000/api/categories/${id}`,
+        {
+          method: "DELETE",
+        }
+      );
+      const result = await response.json();
+      if (!response.ok) {
+        throw new Error(
+          result.message || "Failed to delete category."
+        );
+      }
+      setCategories((previousCategories) =>
+        previousCategories.filter(
+          (category) => category.id !== Number(id)
+        )
+      );
+      return true;
     } catch (err) {
       setError(err.message);
+      return false;
     } finally {
       setLoading(false);
     }
   }
-
   return (
     <CategoryContext.Provider
-      value={{ categories, loading, error, getCategoryById, addCategory, editCategory, deleteCategory }}
+      value={{
+        categories,
+        loading,
+        error,
+        getCategoryById,
+        fetchCategories,
+        addCategory,
+        editCategory,
+        deleteCategory,
+      }}
     >
       {children}
     </CategoryContext.Provider>
@@ -64,11 +163,11 @@ export function CategoryProvider({ children }) {
 }
 
 export function useCategories() {
-  const ctx = useContext(CategoryContext);
-  if (!ctx) throw new Error("useCategories must be used inside <CategoryProvider>");
-  return ctx;
-}
-
-function delay(ms) {
-  return new Promise((res) => setTimeout(res, ms));
+  const context = useContext(CategoryContext);
+  if (!context) {
+    throw new Error(
+      "useCategories must be used inside <CategoryProvider>"
+    );
+  }
+  return context;
 }

@@ -4,24 +4,44 @@ const { findRoute } = require("./utils/routeMatcher");
 const { sendJson } = require("./utils/response");
 
 async function app(req, res) {
-  // These headers are enough for basic local front-end testing during Milestone 2.
-  // Restrict the allowed origin before production deployment.
   res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, PATCH, DELETE, OPTIONS");
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
-
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "GET, POST, PUT, PATCH, DELETE, OPTIONS"
+  );
+  res.setHeader(
+    "Access-Control-Allow-Headers",
+    "Content-Type, Authorization"
+  );
   if (req.method === "OPTIONS") {
     res.writeHead(204);
     res.end();
     return;
   }
-
-  const requestUrl = new URL(req.url, `http://${req.headers.host || "localhost"}`);
+  if (req.method === "POST" || req.method === "PUT") {
+    let body = "";
+    for await (const chunk of req) {
+      body += chunk;
+    }
+    try {
+      req.body = JSON.parse(body);
+    } catch (error) {
+      req.body = {};
+    }
+  }
+  const requestUrl = new URL(
+    req.url,
+    `http://${req.headers.host || "localhost"}`
+  );
   const pathname = requestUrl.pathname;
-  const match = findRoute(routes, req.method, pathname);
-
-  console.log(`${new Date().toISOString()} ${req.method} ${pathname}`);
-
+  const match = findRoute(
+    routes,
+    req.method,
+    pathname
+  );
+  console.log(
+    `${new Date().toISOString()} ${req.method} ${pathname}`
+  );
   if (!match) {
     sendJson(res, 404, {
       status: "error",
@@ -32,18 +52,20 @@ async function app(req, res) {
   }
 
   req.params = match.params;
-  req.query = Object.fromEntries(requestUrl.searchParams.entries());
+  req.query = Object.fromEntries(
+    requestUrl.searchParams.entries()
+  );
   req.pathname = pathname;
 
   try {
     await match.route.handler(req, res);
   } catch (error) {
     console.error(error);
+
     sendJson(res, 500, {
       status: "error",
       message: "An unexpected server error occurred."
     });
   }
 }
-
 module.exports = app;
